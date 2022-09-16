@@ -4,13 +4,14 @@ import kotlin.reflect.KProperty
 
 abstract class Properties(val path: String? = null, val name: String) {
 
-    fun <T : Any?> value(default: T) = object : Delegate<T>(name, path ?: "") {
-        override var default = default
-    }
+    fun <T : Any?> value(default: T) = object : Delegate<T>(name, path ?: "", default) {}
 
-    abstract class Delegate<T : Any?>(name: String, path: String): Config(path, name) {
-        abstract var default: T
+    abstract class Delegate<T : Any?>(name: String, path: String, val default: T) : Config(path, name) {
         var value: T? = null
+
+        init {
+            set(::default.name, default)
+        }
 
         operator fun setValue(thisRef: Any?, property: KProperty<*>, newValue: T) {
             value = newValue
