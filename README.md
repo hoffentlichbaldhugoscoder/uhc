@@ -2,6 +2,6 @@
 
 A minecraft gamemode, where every team fights for being the last team alive
 
-#ToDos
+# ToDos
 - [ ] Adding a border
 - [ ] Adding scenarios
