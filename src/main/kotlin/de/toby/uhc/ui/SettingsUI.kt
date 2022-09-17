@@ -32,7 +32,10 @@ object SettingsUI {
 
     fun enable() {
         listen<PlayerInteractEvent> {
-            if (it.item?.isSimilar(item) == true) it.player.performCommand("settings")
+            if (it.item?.isSimilar(item) == true) {
+                it.player.performCommand("settings")
+                it.isCancelled = true
+            }
         }
     }
 
