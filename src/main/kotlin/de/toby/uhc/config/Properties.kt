@@ -9,10 +9,6 @@ abstract class Properties(val path: String? = null, val name: String) {
     abstract class Delegate<T : Any?>(name: String, path: String, val default: T) : Config(path, name) {
         var value: T? = null
 
-        init {
-            set(::default.name, default)
-        }
-
         operator fun setValue(thisRef: Any?, property: KProperty<*>, newValue: T) {
             value = newValue
             set(property.name, newValue)
